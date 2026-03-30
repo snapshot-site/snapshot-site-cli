@@ -1,0 +1,49 @@
+{
+  "name": "@snapshot-site/cli",
+  "version": "0.1.0",
+  "description": "Official CLI for the Snapshot Site API",
+  "homepage": "https://snapshot-site.com/api-docs",
+  "keywords": [
+    "snapshot",
+    "screenshot",
+    "visual-diff",
+    "cli",
+    "api"
+  ],
+  "license": "MIT",
+  "author": "Snapshot Site",
+  "type": "commonjs",
+  "main": "build/cli.js",
+  "files": [
+    "build",
+    "README.md"
+  ],
+  "bundledDependencies": [
+    "@snapshot-site/sdk"
+  ],
+  "bin": {
+    "snapshot-site": "build/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf build",
+    "prepare": "pnpm run build",
+    "test": "pnpm run build && node --test test/*.test.cjs",
+    "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run test"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "@snapshot-site/sdk": "^0.1.0",
+    "commander": "^14.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
